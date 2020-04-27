@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="django-relativedeltastore",
-    version="0.9.0",
+    version="0.9.1",
     author="anfema GmbH",
     author_email="contact@anfe.ma",
     description="Django model field to store relativedelta from python-dateutil",

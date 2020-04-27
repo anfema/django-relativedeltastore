@@ -30,14 +30,15 @@ class RelativeDeltaStoreField(forms.Field):
         return value
 
     def to_python(self, value):
-        if value not in self.empty_values:
-            value = str(value).strip()
         if value in self.empty_values:
-            return ''
-        return value
+            return None
+        else:
+            return str(value).strip()
 
     def clean(self, value):
         value = super().clean(value)
+        if value is None:
+            return value
         relativedelta_kwargs, remainder = self.deserializer(value)
         if remainder:
             raise ValidationError(_('Invalid value at: %(remainder)s'), params={'remainder': remainder})

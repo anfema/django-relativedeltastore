@@ -16,6 +16,8 @@ class RelativeDeltaStoreField(JSONField):
         })
 
     def from_db_value(self, value, expression, connection):
+        if value is None:
+            return value
         return relativedelta(**value)
 
     def get_prep_value(self, value):
