@@ -26,7 +26,7 @@ jobs:
           python -m build --sdist
       - name: Get version from tag
         id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
       - name: Check package version (compare package version with tag)
         id: check_package_version
         shell: python
