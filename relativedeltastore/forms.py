@@ -13,7 +13,8 @@ class RelativeDeltaStoreField(forms.Field):
             help_text=None, error_messages=None, show_hidden_initial=False,
             validators=(), localize=False, disabled=False, label_suffix=None,
             serializer=create_relativedelta_string,
-            deserializer=parse_relativedelta_string
+            deserializer=parse_relativedelta_string,
+            encoder=None, decoder=None,
     ):
         self.serializer = serializer
         self.deserializer = deserializer
@@ -22,6 +23,7 @@ class RelativeDeltaStoreField(forms.Field):
             required=required, widget=widget, label=label, initial=initial,
             help_text=help_text, error_messages=error_messages, show_hidden_initial=show_hidden_initial,
             validators=validators, localize=localize, disabled=disabled, label_suffix=label_suffix,
+            # omit unused encoder/decoder args
         )
 
     def prepare_value(self, value):
