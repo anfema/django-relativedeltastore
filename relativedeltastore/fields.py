@@ -16,7 +16,8 @@ class RelativeDeltaStoreField(JSONField):
         })
 
     def from_db_value(self, value, expression, connection):
-        value = super().from_db_value(value, expression, connection)
+        if hasattr(super(), 'from_db_value'):  # support new JSONField (django 3.1+)
+            value = super().from_db_value(value, expression, connection)
         if value is None:
             return value
         return relativedelta(**value)
