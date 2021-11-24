@@ -1,9 +1,15 @@
-from django.contrib.postgres.fields import JSONField
 from django.utils.translation import gettext_lazy as _
 
 from dateutil.relativedelta import relativedelta
 
 from . import extract_relativedelta_args, forms
+
+
+try:
+    # there is no difference in the (postgres) schema, so we can easily swap between the two
+    from django.db.models import JSONField
+except ImportError:
+    from django.contrib.postgres.fields.jsonb import JSONField
 
 
 class RelativeDeltaStoreField(JSONField):
